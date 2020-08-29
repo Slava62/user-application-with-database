@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 import user.database.management.model.User;
 import user.database.management.model.UserCollection;
 import user.database.management.repository.UserRepository;
+import user.database.management.services.UserService;
 
 
 import java.io.BufferedReader;
@@ -24,8 +25,8 @@ public class UserDataBaseManagementTests {
 	private BufferedReader reader;
 	private FileReader fileReader;
 	private String inputFileName;
-	//@Autowired
-    //UserService userService;
+	@Autowired
+	UserService userService;
 	
 	 @Autowired
 	 UserRepository userRepository;
@@ -69,16 +70,16 @@ public class UserDataBaseManagementTests {
 	
 	@Test
 	public void userApplicationTest() {
-		/* User user = userService.addUser(1L, "Mark", "mark2020@gmail.com");
+			User user = userService.addUser(1L, "Mark", "mark2020@gmail.com");
 	        Assertions.assertNotNull(user);
 
 	        User expected = userService.getById((long) user.getId());
 	        Assertions.assertNotNull(expected);
-	        */
-		User one = userRepository.getOne(1L);
+
+		/*User one = userRepository.getOne(1L);
         List<User> all = userRepository.findAll();
         Assertions.assertEquals("Mara",one.getName());
-        Assertions.assertEquals(1, all.size());
+        Assertions.assertEquals(1, all.size());*/
 	}
 	
 	@AfterEach
