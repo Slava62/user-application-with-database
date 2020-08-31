@@ -2,20 +2,21 @@ package user.database.management.model;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 public class UserCollection {
-	private Collection<User> userCollection;
+	private List<User> userCollection;
 
 	public UserCollection() {
 		super();
 		this.userCollection = new ArrayList<User>();
 	}
 
-	public Collection<User> getUserCollection() {
+	public List<User> getUserCollection() {
 		return userCollection;
 	}
 
-	public void setUserCollection(Collection<User> userCollection) {
+	public void setUserCollection(List<User> userCollection) {
 		this.userCollection = userCollection;
 	}
 	

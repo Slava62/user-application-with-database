@@ -44,7 +44,7 @@ public class UserDataBaseManagementTests {
 					String[] fields = str.split(";");
 					User user = new User();
 					try {
-						user.setId(Integer.parseInt(fields[0]));
+						user.setId(Long.parseLong(fields[0]));
 						user.setName(fields[1]);
 						user.setEmail(fields[2]);
 						userCollection.getUserCollection().add(user);
@@ -60,28 +60,25 @@ public class UserDataBaseManagementTests {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-	/*	for (User user : userCollection.getUserCollection()) {
-	*		System.out.println(user.toString());
-	*	}
-	*	System.out.println("-----------");
-	*/
 	}
 
 	
 	@Test
 	public void userApplicationTest() {
-			User user = userService.addUser(1L, "Mark", "mark2020@gmail.com");
-	        Assertions.assertNotNull(user);
+	    //add users from userCollection
+        for (User user: userCollection.getUserCollection()) {
+            userService.addUser(user.getId(), user.getName(), user.getEmail());
+        }
 
-	        User expected = userService.getById((long) user.getId());
-	        Assertions.assertNotNull(expected);
-
-		/*User one = userRepository.getOne(1L);
-        List<User> all = userRepository.findAll();
-        Assertions.assertEquals("Mara",one.getName());
-        Assertions.assertEquals(1, all.size());*/
+        List<User> expected = userCollection.getUserCollection();
+        List<User> actual = userRepository.findAll();
+	        Assertions.assertEquals(expected.size(),actual.size());
+	        for(int i=0; i<actual.size()-1;i++) {
+				Assertions.assertEquals(expected.get(i).getName(), actual.get(i).getName());
+				Assertions.assertEquals(expected.get(i).getEmail(), actual.get(i).getEmail());
+			}
 	}
-	
+
 	@AfterEach
 	public void tearDown() throws Exception {
 	reader.close();

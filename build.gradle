@@ -17,14 +17,22 @@ dependencies {
     // https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter
     testCompile group: 'org.junit.jupiter', name: 'junit-jupiter', version: '5.6.2'
 
+
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    }
+
+    // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-test
+    testCompile group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: '2.3.3.RELEASE'
+
+   // testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.2'
+   // testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.6.2'
+
     // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-web
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '2.3.3.RELEASE'
 
     // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-data-jpa
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version: '2.3.3.RELEASE'
-
-    // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-test
-    testCompile group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: '2.3.3.RELEASE'
 
     // https://mvnrepository.com/artifact/mysql/mysql-connector-java
     compile group: 'mysql', name: 'mysql-connector-java', version: '8.0.20'
@@ -33,11 +41,19 @@ dependencies {
     compile group: 'org.springframework.boot', name: 'spring-boot-maven-plugin', version: '2.3.3.RELEASE'
 
     // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-test
-    //testCompile group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: '2.3.3.RELEASE'
+   // testCompile group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: '2.3.3.RELEASE'
 
-     testImplementation('org.springframework.boot:spring-boot-starter-test') {
-         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
-     }
+}
 
+test {
+    // Enable JUnit 5 (Gradle 4.6+).
+    useJUnitPlatform()
 
+    // Always run tests, even when nothing changed.
+   // dependsOn 'cleanTest'
+
+    // Show test results.
+  //  testLogging {
+  //      events "passed", "skipped", "failed"
+  //  }
 }

@@ -19,7 +19,7 @@ public class UserService {
 	
 	public User addUser(Long id, String name, String email) {
 		 User n = new User();
-		 	n.setId(id.intValue());
+		 	n.setId(id);
 		    n.setName(name);
 		    n.setEmail(email);
 		    return userRepository.save(n);
