@@ -2,7 +2,9 @@ package user.database.management.tests;
 
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.core.io.Resource;
 import org.springframework.transaction.annotation.Transactional;
 import user.database.management.model.User;
 import user.database.management.model.UserCollection;
@@ -30,10 +32,12 @@ public class UserDataBaseManagementTests {
 	
 	 @Autowired
 	 UserRepository userRepository;
+	@Value("classpath:MOCK_DATA.txt")
+	Resource fileName;
 
 	@BeforeEach
 	public void setUp() throws Exception {
-		inputFileName = ".\\MOCK_DATA.txt";
+		inputFileName = fileName.getFile().getPath();
 		userCollection = new UserCollection();
 		try {
 			fileReader = new FileReader(inputFileName);
