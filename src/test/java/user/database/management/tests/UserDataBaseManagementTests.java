@@ -15,7 +15,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+
 
 @SpringBootTest
 @Transactional
